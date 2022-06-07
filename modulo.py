@@ -11,5 +11,5 @@ class FastModulo:
     @staticmethod
     def superExponentCalculate(base, exp, superexp, mod):
         for i in range(superexp):
-            base = FastModulo.exponentCalculate(base, exp)
+            base = FastModulo.exponentCalculate(base, exp, mod)
         return base
