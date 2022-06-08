@@ -1,11 +1,16 @@
 from math import log, floor, ceil
-from util import Primes, gcd
-from modulo import FastModulo
+from .util import Primes, gcd
+from .modulo import FastModulo
 from typing import Tuple
 
 def p1(n: int, B: int = 8, a: int = 2) -> Tuple[int, int]:
     """
     Pollard's p-1 Solution
+
+    >>> p1(2183, 6)
+    (37, 59)
+    >>> p1(85919, 8)
+    (151, 569)
     """
     M = 1
     r = a**M
@@ -14,7 +19,7 @@ def p1(n: int, B: int = 8, a: int = 2) -> Tuple[int, int]:
         e = floor(log(n, q))
         r = FastModulo.superExponentCalculate(r, q, e, n)
         val = gcd(r-1, n)
-        if 1 < val < n: return sorted(val, n//val)
+        if 1 < val < n: return tuple(sorted((val, n//val)))
 
 
     return (1, n)
@@ -23,17 +28,24 @@ def p1(n: int, B: int = 8, a: int = 2) -> Tuple[int, int]:
 def rho(n: int, a: int = 5) -> Tuple[int, int]:
     """
     Pollard's Rho Solution
+
+    >>> rho(2183)
+    (37, 59)
+    >>> rho(4183)
+    (47, 89)
+    >>> rho(85919)
+    (151, 569)
     """
     val = 1
     b = a
     f = lambda x: (x**2 + 1) % n
-    while val != 1:
+    while val == 1:
         a = f(a)
         b = f(f(b))
         val = gcd(n, abs(a-b))
         if val == n: return rho(n, a+1)
     
-    return (val, n//val)
+    return tuple(sorted((val, n//val)))
 
 def quadraticSieve(n: int, B: int = 25, r: int = 1, offrange: int = 14):
     """
@@ -50,6 +62,7 @@ def quadraticSieve(n: int, B: int = 25, r: int = 1, offrange: int = 14):
         if val == 1: store[x] = primes
     
     # Do the weird Gaussian Elimination Crap
+    return store
 
 
 

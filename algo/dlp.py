@@ -1,10 +1,17 @@
 from math import ceil
-from dsa import twodict
+from .dsa import twodict
 from typing import Tuple
 
 def dlp(p: int, g: int, h: int) -> Tuple[int, int]:
     """
     Baby-Step, Giant-Step Algorithm for Discrete Log Problem
+
+    >>> dlp(61, 2, 21)
+    (-5, 60)
+    >>> dlp(151, 6, 71)
+    (-133, 150)
+    >>> dlp(1979, 2, 123)
+    (-413, 1978)
     """
     d = round(p ** 0.5)
     e = ceil((p-1)/d)
