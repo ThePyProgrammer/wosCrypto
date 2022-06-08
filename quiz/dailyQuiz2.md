@@ -10,3 +10,13 @@ A corrupt businessman named Xu Yuan challenges Interpol to recover the PIN to hi
 
 Lead Interpol agent Miang Seng immediately whips out his pocket calculator (why does he even bring such things around during arrests), recovers $x$ and $p$ in less that half the time, and transfers Xu Yuan's money into his own offshore bank account in Andorra. How did he do it?
 
+## Prototype Solve
+
+
+```py
+>>> from algo import *
+>>>
+
+
+
+```
