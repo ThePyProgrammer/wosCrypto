@@ -24,7 +24,7 @@ class Primes:
         return True
 
     @staticmethod
-    def primeFac(n: int, lower: int, upper:int = None) -> Tuple[int, dict]:
+    def primeFac(n: int, lower: int = 2, upper:int = None) -> Tuple[int, dict]:
         """
         Slow Prime Factorization method for Bounded Case (lower bound inclusive, upper bound exclusive)
 
@@ -33,11 +33,13 @@ class Primes:
         if upper is None: upper = int(n**0.5)+1
         primes = {}
         for q in range(lower, upper):
-            if n % q == 0: primes[q] = 0
+            if n % q == 0:
+                primes[q] = 0
             while n % q == 0:
-                val //= q
+                n //= q
                 primes[q] += 1
         
+        primes[n] = primes.get(n, 0) + 1
         return (n, primes)
 
     @staticmethod
